@@ -1,4 +1,9 @@
-﻿# vuejs.org
+﻿# az.vuejs.org
+
+Bu repozitoridə "Vue.js"in rəsmi dokumentasiyası olan "vuejs.org"un Azərbaycan dilinə tərcüməsi yerləşir.
+This repository contains Azerbaijani transaltion of vuejs.org, which is the official documentations of Vue.js.
+
+# vuejs.org
 
 This site is built with [hexo](http://hexo.io/). Site content is written in Markdown format located in `src`. Pull requests welcome!
 
