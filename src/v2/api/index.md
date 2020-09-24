@@ -5,29 +5,29 @@ type: api
 
 ## Global Config
 
-`Vue.config` is an object containing Vue's global configurations. You can modify its properties listed below before bootstrapping your application:
+`Vue.config` tərkibində Vue-nun qlobal konfiqurasiyası olan obyektdir. Bu obyektin xassələri aşağıda göstərilib. Onları tətbiqinizi işə salmamışdan əvvəl dəyişə bilərsiniz:
 
 ### silent
 
-- **Type:** `boolean`
+- **Tip:** `boolean`
 
-- **Default:** `false`
+- **Defolt dəyəri:** `false`
 
-- **Usage:**
+- **İstifadə nümunəsi:**
 
   ``` js
   Vue.config.silent = true
   ```
 
-  Suppress all Vue logs and warnings.
+  Bütün Vue loqlarını və xəbərdarlıqlarını söndürür.
 
 ### optionMergeStrategies
 
-- **Type:** `{ [key: string]: Function }`
+- **Tip:** `{ [key: string]: Function }`
 
-- **Default:** `{}`
+- **Defolt dəyəri:** `{}`
 
-- **Usage:**
+- **İstifadə nümunəsi:**
 
   ``` js
   Vue.config.optionMergeStrategies._my_option = function (parent, child, vm) {
@@ -41,90 +41,91 @@ type: api
   // Profile.options._my_option = 2
   ```
 
-  Define custom merging strategies for options.
+  Opsiyalar (options) üçün defolt birləşmə strategiyası (merge strategy) təyin edir.
 
-  The merge strategy receives the value of that option defined on the parent and child instances as the first and second arguments, respectively. The context Vue instance is passed as the third argument.
+  Birləşmə strategiyası funksiyası 1-ci və 2-ci arqument kimi həmin opsiyanın müvafiq olaraq valideyn və övlad obyektlərindəki dəyərini qəbul edir. Üçüncü arqument kimi cari Vue nümunəsinin konteksti ötürülür.
 
-- **See also:** [Custom Option Merging Strategies](../guide/mixins.html#Custom-Option-Merge-Strategies)
+- **Həmçinin bax:** [Opsiyaların istifadəçi yaratdığı birləşmə strategiyaları](../guide/mixins.html#Custom-Option-Merge-Strategies)
 
 ### devtools
 
-- **Type:** `boolean`
+- **Tip:** `boolean`
 
-- **Default:** `true` (`false` in production builds)
+- **Defolt dəyəri:** `true` (prodakşn yığmalarında (production build) - `false`)
 
-- **Usage:**
+- **İstifadə nümunəsi:**
 
   ``` js
-  // make sure to set this synchronously immediately after loading Vue
+  // Vue yüklənəndən dərhal sonra bu xassəni quraşdırmağı unutmayın
   Vue.config.devtools = true
   ```
 
-  Configure whether to allow [vue-devtools](https://github.com/vuejs/vue-devtools) inspection. This option's default value is `true` in development builds and `false` in production builds. You can set it to `true` to enable inspection for production builds.
+  [vue-devtools](https://github.com/vuejs/vue-devtools) yoxlamasının işləyib-işləməməsini tənzimləyir. Bu opsiyanın development yığmalarında dəyəri `true` prodakşn yığmalarında isə `false`-dur. Prodakşn yığmalarında yoxlamanı qoşmaq üçün bu xassəni `true` etməlisiniz.
 
 ### errorHandler
 
-- **Type:** `Function`
+- **Tip:** `Function`
 
-- **Default:** `undefined`
+- **Defolt dəyəri:** `undefined`
 
-- **Usage:**
+- **İstifadə nümunəsi:**
 
   ``` js
   Vue.config.errorHandler = function (err, vm, info) {
-    // handle error
-    // `info` is a Vue-specific error info, e.g. which lifecycle hook
-    // the error was found in. Only available in 2.2.0+
+    // xətanın emalı
+    // `info` - Vue-ya xas olan xəta məlumatıdır. Məsələn, hansı həyat dövrü
+    // hukunda xəta aşkarlanıb. Bu konfiqurasiya yalnız 2.2.0 və daha yeni versiyalarda var
   }
   ```
 
-  Assign a handler for uncaught errors during component render function and watchers. The handler gets called with the error and the Vue instance.
+  Komponent renderi funksiyaları və gözətçilərdə (watcher) tutulmamış xətalar üçün işləyici təyin edir. İşləyici funksiya xəta və Vue obyektini arqument kimi qəbul edir.
 
-  > In 2.2.0+, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
+  > 2.2.0 və daha yeni versiyalarda bu huk həm də komponentin həyat dövrü huklarında çıxan xətaları tutur. Əlavə olaraq, bu huk `undefined` olduğu hallarda, xətalar tətbiqi sındırmır, yalnız `console.error` vasitəsi ilə loqa yazılır.
 
-  > In 2.4.0+, this hook also captures errors thrown inside Vue custom event handlers.
+  > 2.4.0 və daha yeni versiyalarda bu huk həmçinin istifadəçi yaratdığı hadisə işləyiciləri daxilindən atılmış xətaları tutur.
 
-  > In 2.6.0+, this hook also captures errors thrown inside `v-on` DOM listeners. In addition, if any of the covered hooks or handlers returns a Promise chain (e.g. async functions), the error from that Promise chain will also be handled.
+  > 2.6.0 və daha yeni versiyalarda, bu huk həm də `v-on` DOM dinləyiciləri daxilindən atılmış xətaları tutur. Bundan başqa, adı çəkilmiş huk və işləyicilər Promise zənciri qaytarırsa (məsələn, asinxron funksiya), həmin zəncirdəki xətalar da bu huk tərəfindən emal olunacaq.
 
   > Error tracking services [Sentry](https://sentry.io/for/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) provide official integrations using this option.
+  > [Sentry](https://sentry.io/for/vue/) və [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) kimi xəta izləyici servislər bu opsiya üçün rəsmi inteqrasiya təchiz edir.
 
 ### warnHandler
 
 > New in 2.4.0+
 
-- **Type:** `Function`
+- **Tip:** `Function`
 
-- **Default:** `undefined`
+- **Defolt dəyəri:** `undefined`
 
-- **Usage:**
+- **İstifadə nümunəsi:**
 
   ``` js
   Vue.config.warnHandler = function (msg, vm, trace) {
-    // `trace` is the component hierarchy trace
+    // `trace` komponent iyerarxiyasının izidir
   }
   ```
 
-  Assign a custom handler for runtime Vue warnings. Note this only works during development and is ignored in production.
+  Vue rantaym xəbərdarlıqları üçün istifadəçi içləyicisi təyin edir. Bu konfiqurasiya yalnız development zamanı işləyir və prodakşnda nəzərə alınmır.
 
 ### ignoredElements
 
-- **Type:** `Array<string | RegExp>`
+- **Tip:** `Array<string | RegExp>`
 
-- **Default:** `[]`
+- **Defolt dəyəri:** `[]`
 
-- **Usage:**
+- **İstifadə nümunəsi:**
 
   ``` js
   Vue.config.ignoredElements = [
     'my-custom-web-component',
-    'another-web-component',
-    // Use a `RegExp` to ignore all elements that start with "ion-"
-    // 2.5+ only
+    'another-web-component',\
+    // "ion-" ilə başlayan elementləri iqnor etmək üçün `RegExp`-dən istifadə etmək olar
+    // 2.5 və yeni versiyalarda aktualdır
     /^ion-/
   ]
   ```
 
-  Make Vue ignore custom elements defined outside of Vue (e.g., using the Web Components APIs). Otherwise, it will throw a warning about an `Unknown custom element`, assuming that you forgot to register a global component or misspelled a component name.
+  Siyahıdakı elementlər Vue tərəfindən iqnor olunur. Bu siyahıya Vue-dan kənarda yaradılmış (məsələn, Web Component API istifadə edərək) istifadəçi elementləri əlavə olunmalıdır. Əlavə olunmasalar, Vue, qlobal komponenti qeydə almadığınızı və ya komponentin adını düzgün yazmadığınızı hesab edib, `Unknown custom element` (Naməlum istifadəşi yaradan element) xəbərdarlığı atacaq.
 
 ### keyCodes
 
@@ -138,9 +139,9 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
-    // camelCase won`t work
+    // camelCase işləmir
     mediaPlayPause: 179,
-    // instead you can use kebab-case with double quotation marks
+    // əvəzinə dırnaq arasında kebab-case istifadə edə bilərsiniz
     "media-play-pause": 179,
     up: [38, 87]
   }
