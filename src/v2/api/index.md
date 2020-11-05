@@ -186,16 +186,16 @@ type: api
 
 - **İstifadə nümunəsi:**
 
-  Create a "subclass" of the base Vue constructor. The argument should be an object containing component options.
+  Vue təməl konstruktorunun alt sinfini yaradır. Funksiyanın yeganə arqumenti komponentin opsiyalarını daşıyan obyektdir.
 
-  The special case to note here is the `data` option - it must be a function when used with `Vue.extend()`.
+  Xüsusi hal kimi `data` opsiyasını vurğulamaq gərəkdir. O, `Vue.extend()`-də istifadə olunduqda funksiya olmalıdır.
 
   ``` html
   <div id="mount-point"></div>
   ```
 
   ``` js
-  // create constructor
+  // konstruktor yarat
   var Profile = Vue.extend({
     template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
     data: function () {
@@ -206,17 +206,17 @@ type: api
       }
     }
   })
-  // create an instance of Profile and mount it on an element
+  // Profile obyekti yarat və onu elementə quraşdır
   new Profile().$mount('#mount-point')
   ```
 
-  Will result in:
+  Nəticə:
 
   ``` html
-  <p>Walter White aka Heisenberg</p>
+  <p>Həmçinin Hayzenberq kimi tanınan Volter Vayt</p>
   ```
 
-- **Həmçinin bax:** [Components](../guide/components.html)
+- **Həmçinin bax:** [Komponentlər](../guide/components.html)
 
 ### Vue.nextTick( [callback, context] )
 
@@ -226,26 +226,26 @@ type: api
 
 - **İstifadə nümunəsi:**
 
-  Defer the callback to be executed after the next DOM update cycle. Use it immediately after you've changed some data to wait for the DOM update.
+  DOM-un növbəti yenilənmə dövründə `callback` parametrindəki funksiyanı çağırır. Verilənləri dəyişdikdən dərhal sonra yenilənmiş DOM ilə iş üçün istifadə edin.
 
   ``` js
-  // modify data
+  // verilənləri dəyiş
   vm.msg = 'Hello'
-  // DOM not updated yet
+  // DOM hələ yenilənməyib
   Vue.nextTick(function () {
-    // DOM updated
+    // DOM yenilənib
   })
 
-  // usage as a promise (2.1.0+, see note below)
+  // Promise kimi istifadə nümunəsi (2.1.0-dan yeni versiyalarda, aşağıdakı qeydə bax)
   Vue.nextTick()
     .then(function () {
-      // DOM updated
+      // DOM yenilənib
     })
   ```
 
-  > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
+  > Versiya 2.1.0-da əlavə olunub: Kolbək ötürülməyibsə Promise funksiya qaytarır və həmin Promise icra mühitində dəstəklənir. Nəzərə alın ki Vue Promise polifili təqdim etmir. Nativ olaraq Promise polifili dəstəkləməyən brauzerləri hədəfə alsanız (məsələn, IE), polifili özünüz əlavə etməlisiniz.
 
-- **Həmçinin bax:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
+- **Həmçinin bax:** [Asinxron yenilənmə növbəsi](../guide/reactivity.html#Async-Update-Queue)
 
 ### Vue.set( target, propertyName/index, value )
 
@@ -254,15 +254,15 @@ type: api
   - `{string | number} propertyName/index`
   - `{any} value`
 
-- **Qaytarır:** the set value.
+- **Qaytarır:** ayarlanmış dəyəri.
 
 - **İstifadə nümunəsi:**
 
-  Adds a property to a reactive object, ensuring the new property is also reactive, so triggers view updates. This must be used to add new properties to reactive objects, as Vue cannot detect normal property additions (e.g. `this.myObject.newProperty = 'hi'`).
+  Reaktiv obyektə xassə əlavə edir. Yeni xassənin reaktiv olmağına zəmanət verərək, görünüşün yenilənməsini təmin edir. Vue adi qaydada xassələrin əlavə olunmasını (məsələn `this.myObject.newProperty = 'hi'`) aşkar edə bilmədiyindən, reaktiv obyektlərə xassələr əlavə etmək üçün bu funksiya istifadə olunmalıdır.
 
-  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
+  <p class="tip">Nəzərə alın ki, `target` Vue obyekti və ya onun `data` xassəsi (verilənləri saxlayan obyekt) ola bilməz.</p>
 
-- **Həmçinin bax:** [Reactivity in Depth](../guide/reactivity.html)
+- **Həmçinin bax:** [Reaktivlik barədə ətraflı məlumat](../guide/reactivity.html)
 
 ### Vue.delete( target, propertyName/index )
 
@@ -270,7 +270,7 @@ type: api
   - `{Object | Array} target`
   - `{string | number} propertyName/index`
 
-  > Only in 2.2.0+: Also works with Array + index.
+  > 2.2.0-dan etibarən: massiv və indekslərlə də işləyir.
 
 - **İstifadə nümunəsi:**
 
