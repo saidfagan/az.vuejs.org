@@ -274,11 +274,11 @@ type: api
 
 - **İstifadə nümunəsi:**
 
-  Delete a property on an object. If the object is reactive, ensure the deletion triggers view updates. This is primarily used to get around the limitation that Vue cannot detect property deletions, but you should rarely need to use it.
+  Obyektin xassəsini silir. Obyekt reaktivdirsə, silinmə əməliyyatının həmçinin görünüşü yeniləyəcəyək. Bu metod adətən Vue-nun xassələrin birbaşa silinməsini aşkar edə bilmədiyi üçün istifadə olunur. Sizə nadir hallarda lazım ola bilər.
 
-  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
+  <p class="tip">`target` parametri Vue obyekti və ya onun `data` xassəsi (verilənləri saxlayan obyekt) ola bilməz.</p>
 
-- **Həmçinin bax:** [Reactivity in Depth](../guide/reactivity.html)
+- **Həmçinin bax:** [Reaktivlik barədə ətraflı məlumat](../guide/reactivity.html)
 
 ### Vue.directive( id, [definition] )
 
@@ -288,10 +288,10 @@ type: api
 
 - **İstifadə nümunəsi:**
 
-  Register or retrieve a global directive.
+  Yeni qlobal direktiv qeydə alır və ya mövcud direktivi qaytarır.
 
   ``` js
-  // register
+  // qeydə al
   Vue.directive('my-directive', {
     bind: function () {},
     inserted: function () {},
@@ -300,16 +300,16 @@ type: api
     unbind: function () {}
   })
 
-  // register (function directive)
+  // qeydə al (funksiya direktivi)
   Vue.directive('my-directive', function () {
-    // this will be called as `bind` and `update`
+    // bu funksiya `bind` və `update` üçün çağırılacaq
   })
 
-  // getter, return the directive definition if registered
+  // belə direktiv varsa, onu əldə edir
   var myDirective = Vue.directive('my-directive')
   ```
 
-- **Həmçinin bax:** [Custom Directives](../guide/custom-directive.html)
+- **Həmçinin bax:** [İstifadəçi yaradan direktivlər](../guide/custom-directive.html)
 
 ### Vue.filter( id, [definition] )
 
@@ -319,19 +319,19 @@ type: api
 
 - **İstifadə nümunəsi:**
 
-  Register or retrieve a global filter.
+  Yeni qlobal filtr qeydə alır və ya mövcud filtri qaytarır.
 
   ``` js
-  // register
+  // qeydə al
   Vue.filter('my-filter', function (value) {
-    // return processed value
+    // emal olunmuş dəyəri qaytarır
   })
 
-  // getter, return the filter if registered
+  // belə filtr varsa, onu əldə edir
   var myFilter = Vue.filter('my-filter')
   ```
 
-- **Həmçinin bax:** [Filters](../guide/filters.html)
+- **Həmçinin bax:** [Filtrlər](../guide/filters.html)
 
 ### Vue.component( id, [definition] )
 
@@ -341,20 +341,20 @@ type: api
 
 - **İstifadə nümunəsi:**
 
-  Register or retrieve a global component. Registration also automatically sets the component's `name` with the given `id`.
+  Yeni qlobal komponent qeydə alır və ya mövcud komponenti qaytarır. Yenisinin qeydə alınması zamanı həmdə komponentin `name` xassəsi ötürülmüş `id` parametrinin dəyəri ilə quraşdırılır. 
 
   ``` js
-  // register an extended constructor
+  // `Vue.extend`-dən alınmış konstruktoru qeydə al
   Vue.component('my-component', Vue.extend({ /* ... */ }))
 
-  // register an options object (automatically call Vue.extend)
+  // opsiyalı obyekt qeydə al (avtomatik Vue.extend çağırır)
   Vue.component('my-component', { /* ... */ })
 
-  // retrieve a registered component (always return constructor)
+  // qeydə alınmış komponenti əldə et (həmişə onun konstruktorunu qaytarır)
   var MyComponent = Vue.component('my-component')
   ```
 
-- **Həmçinin bax:** [Components](../guide/components.html)
+- **Həmçinin bax:** [Komponentlər](../guide/components.html)
 
 ### Vue.use( plugin )
 
@@ -363,13 +363,13 @@ type: api
 
 - **İstifadə nümunəsi:**
 
-  Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
+  Vue.js plaqini quraşdırır. Plaqin obyektdirsə, onun `install` metodu olmalıdır. Funksiyadırsa, onunla `install` metodu kimi rəftar olunacaq. `install` metoduna Vue obyekti arqument kimi ötürüləcək.
 
-  This method has to be called before calling `new Vue()`
+  Bu metod `new Vue()` çağırılmamışdan əvvəl çağırılmalıdır.
 
-  When this method is called on the same plugin multiple times, the plugin will be installed only once.
+  Əgər bu metod eyni plaqinlə bir neçə dəfə çağırılsa, həmin plaqin yalnız bir dəfə quraşdırılacaq.
 
-- **Həmçinin bax:** [Plugins](../guide/plugins.html)
+- **Həmçinin bax:** [Plaqinlər](../guide/plugins.html)
 
 ### Vue.mixin( mixin )
 
@@ -407,7 +407,7 @@ type: api
 
 ### Vue.observable( object )
 
-> New in 2.6.0+
+> 2.6.0+ versiyalarda
 
 - **Arqumentlər:**
   - `{Object} object`
