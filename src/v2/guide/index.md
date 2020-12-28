@@ -4,39 +4,39 @@ type: guide
 order: 2
 ---
 
-## What is Vue.js?
+## Vue.js nədir?
 
-Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](single-file-components.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#components--libraries).
+Vue (/vjuː/ kimi tələffüz olunur, **view**) istifadəçi interfeysi yaratmaq üçün **proqressiv freymvorkdur**. Digər monolit freymvorklardan fərqli olaraq, Vue-nun tədricən mənimsədilməsi mümkündür. Əsas kitabxana yalnız görünüş qatında fokuslanıb və nəticədə digər kitabxana və proyektlərlə inteqrasiyası asandır. Digər tərəfdən, Vue [müasir alətlər](single-file-components.html) və [əlavə kitabxanalar](https://github.com/vuejs/awesome-vue#components--libraries) ilə birgə istifadə olunduqda, qəliz təksəhifəli tətbiqlərin (Single-Page Application, SPA) yaradılması üçün mükəmməldir.
 
-If you’d like to learn more about Vue before diving in, we <a id="modal-player"  href="#">created a video</a> walking through the core principles and a sample project.
+Başlamamışdan əvvəl Vue haqqında daha çox öyrənmək istəyirsinizsə, biz sizin üçün nümunə proyekt üzərində əsas prinsipləri izah edən <a id="modal-player"  href="#">video hazırlamışıq</a>.
 
-If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
+Əgər siz təcrübəli frontend developersinizsə, və Vue-nu digər freymvork və kitabxanalarla müqayisə etmək istəyirsinizsə onda [Digər freymovrklarla müqayisə](comparison.html) bölməsinə nəzər yetirin.
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Free Vue.js Course">Watch a free video course on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="sponsored noopener" title="Free Vue.js Course">Vue Mastery saytındakı pulsuz kursa baxın</a></div>
 
-## Getting Started
+## Başla
 
-<a class="button" href="installation.html">Installation</a>
+<a class="button" href="installation.html">Quraşdırılması</a>
 
-<p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
+<p class="tip">Rəsmi bələdçi sizin HTML, CSS, və JavaScript-in orta səviyyədə bilməyinizi tələb edir. Əgər sizin frontend developmentdə təcrübəniz ümumiyyətlə yoxdursa onda yeni freymvork öyrənmək yaxşı fikir deyil - əsasları öyrənin və bura qayıdın! Digər freymvorklarla təcrübəyə malik olmaq sizə kömək edə bilər, amma məcbur deyil.</p>
 
-The easiest way to try out Vue.js is using the [Hello World example](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-hello-world). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/examples/vue-20-hello-world/index.html" target="_blank" download="index.html" rel="noopener noreferrer">create an <code>index.html</code> file</a> and include Vue with:
+Vue.js-i sınamaq üçün ən asan yol is [Hello World nümunəsinə](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-hello-world) baxmaqdır. Bu nümunəyi başqa tabda açıb bu bələdçidəki nümunələrə uyğun dəyişə bilərsiniz. Və ya <a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/examples/vue-20-hello-world/index.html" target="_blank" download="index.html" rel="noopener noreferrer"><code>index.html</code> faylı yaradıb</a> Vue-nu aşağıdakı şəkildə əlavə edə bilərsiniz:
 
 ``` html
-<!-- development version, includes helpful console warnings -->
+<!-- development versiyası, konsolda faydalı xəbərdarlıqlar göstərir  -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
-or:
+və ya:
 
 ``` html
-<!-- production version, optimized for size and speed -->
+<!-- prodakşn versiyası, sürət və ölçüsü optimizasiya olunub -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-The [Installation](installation.html) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+[Quraşdırma](installation.html) səhifəsi Vue-nun quraşdırılmasının əlavə opsiyalarını təqdim edir. Qeyd: Yeni istifadəçilərin `vue-cli` istifadə etməsi **məsələhət görülmür**, xüsusən bu istifadəçinin Node.js yığma alətləri ilə təcrübəsi yoxdursa. 
 
-If you prefer something more interactive, you can also check out [this tutorial series on Scrimba](https://scrimba.com/g/gvuedocs), which gives you a mix of screencast and code playground that you can pause and play around with anytime.
+Əgər interaktiv dərslərə üstünlük verirsinizsə, onda [Scrimba saytındakı dərslərə](https://scrimba.com/g/gvuedocs) baxa bilərsiniz. Bu dərslər skrinkast və oyun meydanşası qarışığı təqdim edir, istədyiniz zaman fasilə verib ətrafı araşdıra bilərsiniz.
 
 ## Declarative Rendering
 
