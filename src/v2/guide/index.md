@@ -118,11 +118,11 @@ Yenidən JavaScript konsolunu açıb `app2.message = 'yeni mesaj'` daxil etsəni
 
 <div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Bu dərsə Scrimba saytında bax</a></div>
 
-It's easy to toggle the presence of an element, too:
+Elementin görünüb-görünməməsini dəyişmək də olduqca asandır:
 
 ``` html
 <div id="app-3">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Görünən element</span>
 </div>
 ```
 
@@ -137,7 +137,7 @@ var app3 = new Vue({
 
 {% raw %}
 <div id="app-3" class="demo">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">Görünən element</span>
 </div>
 <script>
 var app3 = new Vue({
@@ -149,11 +149,11 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-Go ahead and enter `app3.seen = false` in the console. You should see the message disappear.
+Konsolda `app3.seen = false` daxil edin. Mesaj gizlənəcək.
 
-This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions.html) when elements are inserted/updated/removed by Vue.
+Bu nümunə verilənlərin mətn və atributlardan başqa DOM-un **strukturu** ilə də bağlanmasının mümkün olduğunu göstərir. Əlavə olaraq, Vue-da elementlər DOM-a əlavə olunanda, dəyişəndə və silinəndə onlara [keçid effektləri](transitions.html) tətbiq edə bilən güclü keçid effektləri sistemi var.
 
-There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
+Müxtəlif funksiyaları olan bir neçə direktiv də var. Məsələn, `v-for` direktivi massivin elementlərini göstərməyə imkan verir:
 
 ``` html
 <div id="app-4">
@@ -169,9 +169,9 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'JavaScript öyrən' },
+      { text: 'Vue öyrən' },
+      { text: 'Yeni bir şey yarat' }
     ]
   }
 })
@@ -189,20 +189,20 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'JavaScript öyrən' },
+      { text: 'Vue öyrən' },
+      { text: 'Yeni bir şey yarat' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
+Konsola `app4.todos.push({ text: 'New item' })` daxil edin. Siyahıya yeni elementin əlavə olunduğunu görə bilərsiniz.
 
 ## Handling User Input
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Bu dərsə Scrimba saytında bax</a></div>
 
 To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our Vue instances:
 
