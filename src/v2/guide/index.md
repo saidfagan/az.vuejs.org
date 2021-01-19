@@ -200,23 +200,23 @@ var app4 = new Vue({
 
 Konsola `app4.todos.push({ text: 'New item' })` daxil edin. Siyahıya yeni elementin əlavə olunduğunu görə bilərsiniz.
 
-## Handling User Input
+## İstifadəçi inputunun emal olunması
 
 <div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Bu dərsə Scrimba saytında bax</a></div>
 
-To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our Vue instances:
+İstifadəçilərin tətbiqimizə təsir göstərə bilməsi üçün `v-on` direktivindən istifadə edə bilərik. Bu direkltiv Vue obyektlərinə hadisə dinləyiciləri bərkidərək metodları çağıra bilmək imkanı yaradır:
 
 ``` html
 <div id="app-5">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">İsmarıcı çevir</button>
 </div>
 ```
 ``` js
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Salam Vue.js!'
   },
   methods: {
     reverseMessage: function () {
@@ -228,13 +228,13 @@ var app5 = new Vue({
 {% raw %}
 <div id="app-5" class="demo">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">İsmarıcı çevir</button>
 </div>
 <script>
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'Salam Vue.js!'
   },
   methods: {
     reverseMessage: function () {
@@ -245,9 +245,9 @@ var app5 = new Vue({
 </script>
 {% endraw %}
 
-Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+Fikir verin ki, bu metodda biz tətbiqimizin halını DOM-a toxunmadan dəyişirik - DOM-la olan bütün işi Vue görür, və siz yalnız tətbiqin məntiqinə aid kod yazırsınız.
 
-Vue also provides the `v-model` directive that makes two-way binding between form input and app state a breeze:
+Vue həmçinin `v-model` direktivini təmin edir. Bu direktiv formanın elementləri və tətbiqin halını bir birinə ikitərəfli bağlayır:
 
 ``` html
 <div id="app-6">
@@ -259,7 +259,7 @@ Vue also provides the `v-model` directive that makes two-way binding between for
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'Salam Vue!'
   }
 })
 ```
@@ -272,7 +272,7 @@ var app6 = new Vue({
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'Salam Vue!'
   }
 })
 </script>
@@ -280,7 +280,7 @@ var app6 = new Vue({
 
 ## Composing with Components
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Bu dərsə Scrimba saytında bax</a></div>
 
 The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
 
