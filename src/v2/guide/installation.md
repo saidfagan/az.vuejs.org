@@ -1,56 +1,56 @@
 ---
-title: Installation
+title: Quraşdırılması
 type: guide
 order: 1
 vue_version: 2.5.16
 gz_size: "30.90"
 ---
 
-### Compatibility Note
+### Uyğunluq haqqında qeyd
 
-Vue does **not** support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8. However it supports all [ECMAScript 5 compliant browsers](https://caniuse.com/#feat=es5).
+Vue IE8 və daha köhnə versiyaları **dəstəkləmir**, çünki o, IE8-də heç bir halda emulyasiya oluna bilməyən ECMAScript 5 xüsusiyyətlərini istifadə edir. Lakin o, [ECMAScript 5 ilə uzlaşan](https://caniuse.com/#feat=es5) bütün brauzerləri dəstəkləyir.
 
-### Semantic Versioning
+### Semantik versiyalaşdırma
 
-Vue follows [Semantic Versioning](https://semver.org/) in all its official projects for documented features and behavior. For undocumented behavior or exposed internals, changes are described in [release notes](https://github.com/vuejs/vue/releases).
+Vue sənədləşmiş xüsusiyyətləri və davranışları üçün bütün rəsmi proyektlərində [semantik versiyalaşdırmanı](https://semver.org/) təqib edir. Sənədləşməmiş davranışlar və üzə çıxan daxili məntiq üçün isə dəyişikliklər [reliz qeydlərində](https://github.com/vuejs/vue/releases) təsvir olunur.
 
-### Release Notes
+### Reliz qeydləri
 
-Latest stable version: {{vue_version}}
+Son stabil versiya: {{vue_version}}
 
-Detailed release notes for each version are available on [GitHub](https://github.com/vuejs/vue/releases).
+Bütün versiyalar üçün ətraflı reliz qeydləri [GitHub](https://github.com/vuejs/vue/releases)-da əlçatandır.
 
-## Vue Devtools
+## Vue developer alətləri
 
-When using Vue, we recommend also installing the [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) in your browser, allowing you to inspect and debug your Vue applications in a more user-friendly interface.
+Vue istifadə etdikdə brauzerinizdə [Vue developer alətləri genişləndirməsini](https://github.com/vuejs/vue-devtools#vue-devtools) quraşdırmağı məsləhət görürük. Bu alət Vue tətbiqinizi daha rahat mühitdə təhlil və debaq etməyə şərait yaradacaq.
 
-## Direct `<script>` Include
+## `<script>` teqi ilə qoşmaq
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable.
+Sadəcə yükləyin və script teqi ilə qoşun. `Vue` qlobal dəyişən kimi qeydə alınacaq.
 
-<p class="tip">Don't use the minified version during development. You will miss out on all the nice warnings for common mistakes!</p>
+<p class="tip">Development zamanı kiçildilmiş versiyadan istifadə etməyin. Ümumi xətalar üçün bütün xəbərdarlıqları qaçıra bilərsiniz!</p>
 
 <div id="downloads">
-  <a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
+  <a class="button" href="/js/vue.js" download>Development versiyası</a><span class="light info">Uzun xəbərdarlıqlar və debaq rejimi ilə</span>
 
-  <a class="button" href="/js/vue.min.js" download>Production Version</a><span class="light info">Warnings stripped, {{gz_size}}KB min+gzip</span>
+  <a class="button" href="/js/vue.min.js" download>Prodakşn versiyası</a><span class="light info">Qısaldılmış xəbərdarlıqlar ilə, {{gz_size}}KB min+gzip</span>
 </div>
 
 ### CDN
 
-For prototyping or learning purposes, you can use the latest version with:
+Prototiplər yaratmaq və ya öyrənmək üçün son versiyanı belə istifadə elə bilərsiniz:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
-For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:
+Prodakşnda yeni versiyalar gözlənilməz xətalara səbəb olmaması üçün konkret versiya nömrəsi yazmaq məsləhət görülür:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
 ```
 
-If you are using native ES Modules, there is also an ES Modules compatible build:
+ES modulları istifadə edirsinizsə onlarla uzlaşan yığma istifadə edə bilərsiniz:
 
 ``` html
 <script type="module">
@@ -58,12 +58,11 @@ If you are using native ES Modules, there is also an ES Modules compatible build
 </script>
 ```
 
-You can browse the source of the NPM package at [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
+Bu [linkdən](https://cdn.jsdelivr.net/npm/vue/) NPM paketin ilkin koduna baxa bilərsiniz.
 
-Vue is also available on [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) and [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs takes some time to sync so the latest release may not be available yet).
+Vue həmçinin [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) və [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) saytlarında əlçatandır (cdnjs bir müddət sonra sinxronizasiya edir, ən son versiya bu saytda olmaya bilər).
 
-Make sure to read about [the different builds of Vue](#Explanation-of-Different-Builds) and use the **production
- version** in your published site, replacing `vue.js` with `vue.min.js`. This is a smaller build optimized for speed instead of development experience.
+[Vue-nun müxtəlif yığmaları](#Explanation-of-Different-Builds) haqqında mütləq oxuyun və öz saytınızda `vue.js`-i `vue.min.js` ilə əvəz edərək **prodakşn versiyasını** istifadə edin. Bu development yığmasından fərqli olaraq sürətli və optimallaşdırılmış yığmadır.
 
 ## NPM
 
