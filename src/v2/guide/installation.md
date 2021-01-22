@@ -66,47 +66,48 @@ Vue həmçinin [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) və [c
 
 ## NPM
 
-NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
+Vue ilə irimiqyaslı tətbiqlər yazanda NPM istifadə etmək məsləhət görülür. O, [Webpack](https://webpack.js.org/) və [Browserify](http://browserify.org/) kimi yığma alətləri ilə yaxşı uzlaşır. Vue həmçinin [tək fayllı komponentlər](single-file-components.html) tərtib etmək üçün alətlər təqdim edir.
 
 ``` bash
-# latest stable
+# son stabil versiya
 $ npm install vue
 ```
 
 ## CLI
 
-Vue provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds. See [the Vue CLI docs](https://cli.vuejs.org) for more details.
+Yüksək keyfiyyətli tək səhifəli tətbiqlər yaratmaq üçün Vue [rəsmi komanda sətiri interfeysi (CLI)](https://github.com/vuejs/vue-cli). CLI müasir frontend development üçün hər bir alətlə təmin edir. Bu alətlə cəmi bir neçə dəqiqəyə qaynar yenidən yükləməli, yadda saxlama zamanı kodu lint edən və prodakşna hazır tətbiq yaratmaq mümkündür. Əlavə məlumat üşün [Vue CLI dokumentasiyasına](https://cli.vuejs.org) nəzər yetirin.
 
-<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
+<p class="tip">CLI Node.js və ona bağlı yığma alətləri haqqında biliyiniz olmasını tələb edir. Əgər sizin Vue və ya ümumiyyətlə frontend developmentdə təcrübəniz yoxdursa <a href="./">bələdçinin</a> yığma alətləri olmayan hissələrəni oxuyun, daha sonra CLI istifadə edə bilərsiniz
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="sponsored noopener" title="Vue CLI">Watch a video explanation on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="sponsored noopener" title="Vue CLI">Vue Mastery saytında izahlı videoya bax</a></div>
 
-## Explanation of Different Builds
+## Fərqli yığmaların açıqlaması
 
-In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+[NPM paketin `dist/` qovluğunda](https://cdn.jsdelivr.net/npm/vue/dist/) Vue.js-in çoxlu fərqli yığmalarını görə bilərsiniz. Ağağıdakı cədvəldə onlar arasındakı fərqlər cəmləşdirilib:
 
 | | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers) |
 | --- | --- | --- | --- | --- |
-| **Full** | vue.js | vue.common.js | vue.esm.js | vue.esm.browser.js |
+| **Tam** | vue.js | vue.common.js | vue.esm.js | vue.esm.browser.js |
 | **Runtime-only** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js | - |
-| **Full (production)** | vue.min.js | - | - | vue.esm.browser.min.js |
-| **Runtime-only (production)** | vue.runtime.min.js | - | - | - |
+| **Tam (prodakşn)** | vue.min.js | - | - | vue.esm.browser.min.js |
+| **Runtime-only (prodakşn)** | vue.runtime.min.js | - | - | - |
 
-### Terms
+### Terminlər
 
-- **Full**: builds that contain both the compiler and the runtime.
+- **Tam**: tərkibində rantaym və kompilyator olan yığma.
 
-- **Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
+- **Kompilyator**: sətir şablonlarını JavaScript render funksiyalarına çevirən kod.
 
-- **Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
+- **Runtime**: Vue obyektləri yaradan, render edən, virtual DOM-u dəyişən kod. Qısaca kompilyatordan başqa hər şey.
 
-- **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
+- **[UMD](https://github.com/umdjs/umd)**: UMD yığmaları birbaşa brauzerdə `<script>` teqində istifadə oluna bilər. jsDelivr CDN saytındakı ([https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue)) defolt fayl (`vue.js`) rantaym və kompilyatoru olan UMD yığmasıdır.
 
-- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io). The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
+- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS yığmaları [browserify](http://browserify.org/) və [webpack 1](https://webpack.github.io) kimi köhnə yığma alətlər üçün nəzərdə tutulub. Bu alətlər üçün defolt fayl (`pkg.main`) tərkibində yalnız rantaym olan CommonJS yığmasıdır (`vue.runtime.common.js`).
 
 - **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: starting in 2.6 Vue provides two ES Modules (ESM) builds:
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: 2.6 və daha yeni versiyalarda Vue iki ES Modules (ESM) yığmaları təqdim edir:
 
-  - ESM for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
+  - yığma alətləri üçün ESM: [webpack 2](https://webpack.js.org) və [Rollup](https://rollupjs.org/) kimi müasir yığma alətləri üçün nəzərdə tutulub. ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
 
   - ESM for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
 

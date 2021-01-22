@@ -1,7 +1,8 @@
 ﻿# az.vuejs.org
 
 Bu repozitoridə "Vue.js"in rəsmi dokumentasiyası olan "vuejs.org"un Azərbaycan dilinə tərcüməsi yerləşir.
-This repository contains Azerbaijani transaltion of vuejs.org, which is the official documentations of Vue.js.
+
+This repository contains Azerbaijani transaltion of vuejs.org, which is the official documentation of Vue.js.
 
 # vuejs.org
 
