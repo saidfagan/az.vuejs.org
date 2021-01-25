@@ -107,21 +107,21 @@ Yüksək keyfiyyətli tək səhifəli tətbiqlər yaratmaq üçün Vue [rəsmi k
 - **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: starting in 2.6 Vue provides two ES Modules (ESM) builds:
 - **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: 2.6 və daha yeni versiyalarda Vue iki ES Modules (ESM) yığmaları təqdim edir:
 
-  - yığma alətləri üçün ESM: [webpack 2](https://webpack.js.org) və [Rollup](https://rollupjs.org/) kimi müasir yığma alətləri üçün nəzərdə tutulub. ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
+  - yığma alətləri üçün ESM: [webpack 2](https://webpack.js.org) və [Rollup](https://rollupjs.org/) kimi müasir yığma alətləri üçün nəzərdə tutulub. ESM formatı statik analiz imkanı ilə yaradılıb. Yığma alətləri bundan faydalanıb yekun yığmadan istifadə olunmayan kodu "tree-shaking" metodu ilə silə bilər. Bu yığma alətləri üçün defolt fayl (`pkg.module`) tərkibində yalnız rantaym olan ESM yığmalarıdır (`vue.runtime.esm.js`).
 
-  - ESM for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
+  - brauzerlər üçün ESM (yalnız 2.6+): müasir brauzerlərdə `<script type="module">` vasitəsi ilə istifadə üçün nəzərdə tutulub.
 
-### Runtime + Compiler vs. Runtime-only
+### Rantaym + Kompilyator və yalnız rantaym yığmalarının fərqi
 
-If you need to compile templates on the client (e.g. passing a string to the `template` option, or mounting to an element using its in-DOM HTML as the template), you will need the compiler and thus the full build:
+Əgər şablon kompilyasiya etməyə ehtiyac duysanız (məsələn, `template` opsiyasına sətir ötürsəniz, və ya elementin DOM-dakı HTML-ni şablon kimi istifadə edərək ona qoşulsanız), sizə şablon kompilyatoru lazım olacaq. Ona görə tam yığma istifadə etmək məsləhət görülür:
 
 ``` js
-// this requires the compiler
+// bu şablon kompilyatoru tələb edir
 new Vue({
   template: '<div>{{ hi }}</div>'
 })
 
-// this does not
+// bu isə tələb etmir
 new Vue({
   render (h) {
     return h('div', this.hi)
@@ -129,9 +129,10 @@ new Vue({
 })
 ```
 
-When using `vue-loader` or `vueify`, templates inside `*.vue` files are pre-compiled into JavaScript at build time. You don't really need the compiler in the final bundle, and can therefore use the runtime-only build.
+`vue-loader` və ya `vueify` istifadə etdikdə, `*.vue` fayllarının daxilindəki şablonlar yığma zamanı JavaScript koda kompilyasiya olur. Yekun yığmada kompilyatora ehtiyac qalmır, ona görə də tərkibində yalnız rantaym olan yığma istifadə etmək olar .
 
 Since the runtime-only builds are roughly 30% lighter-weight than their full-build counterparts, you should use it whenever you can. If you still wish to use the full build instead, you need to configure an alias in your bundler:
+Yalnız rantaym olan yığmaların həcmi tam yığmaların həcmindən təxmini 30% az olduğuna görə mümkün olanda onları istifadə etmək lazımdır. Tam yığma istifadə etmək istəyirsinizsə yığma alətində psevdonim quraşdırmalısınız:
 
 #### Webpack
 
@@ -163,7 +164,7 @@ rollup({
 
 #### Browserify
 
-Add to your project's `package.json`:
+Proyektiniz `package.json` faylına əlavə edin:
 
 ``` js
 {
@@ -176,7 +177,7 @@ Add to your project's `package.json`:
 
 #### Parcel
 
-Add to your project's `package.json`:
+Proyektiniz `package.json` faylına əlavə edin:
 
 ``` js
 {
@@ -187,17 +188,18 @@ Add to your project's `package.json`:
 }
 ```
 
-### Development vs. Production Mode
+### Development və prodakşn rejimləri arasında fərq
 
-Development/production modes are hard-coded for the UMD builds: the un-minified files are for development, and the minified files are for production.
+UMD yığmalarda development və prodakşn rejimləri əvvəlcədən təyin olunub: sıxılmamış fayl development üçündür, sıxılmış fayl isə prodakşn üçün.
 
-CommonJS and ES Module builds are intended for bundlers, therefore we don't provide minified versions for them. You will be responsible for minifying the final bundle yourself.
+CommonJS və ES Module yığmaları yığma alətləri üçün nəzərdə tutulub. Buna görə də onların sıxılmış versiyaları yoxdur. Yekun yığmada faylların sıxılmasını özünüz etməlisinz. 
 
-CommonJS and ES Module builds also preserve raw checks for `process.env.NODE_ENV` to determine the mode they should run in. You should use appropriate bundler configurations to replace these environment variables in order to control which mode Vue will run in. Replacing `process.env.NODE_ENV` with string literals also allows minifiers like UglifyJS to completely drop the development-only code blocks, reducing final file size.
+Rejimi təyin etmək üçün CommonJS və ES Module yığmaları həmçinin `process.env.NODE_ENV` verilənini yoxlayır. Vue-nun hansı rejimdə işləməsinə nəzarət etmək üçün bu mühit verilənini yığma aləti vasitəsi ilə dəyişmək lazımdır. `process.env.NODE_ENV` verilənini sətir literalı ilə dəyişmək UglifyJS kimi fayl sıxanlara yalnız development zamanı istifadə olunan kodları kəsib yekun fayl həcmini azalatmağa imkan verir.
 
 #### Webpack
 
 In Webpack 4+, you can use the `mode` option:
+Webpack 4+ versiyalarda `mode` opsiyasından istifadə edə bilərsiniz:
 
 ``` js
 module.exports = {
@@ -205,7 +207,7 @@ module.exports = {
 }
 ```
 
-But in Webpack 3 and earlier, you'll need to use [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+Lakin Webpack 3 və daha yeni versiyalarda [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) istifadə etməli olacaqsınız:
 
 ``` js
 var webpack = require('webpack')
@@ -225,7 +227,7 @@ module.exports = {
 
 #### Rollup
 
-Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
+[rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace) istifadə edin:
 
 ``` js
 const replace = require('rollup-plugin-replace')
@@ -242,23 +244,23 @@ rollup({
 
 #### Browserify
 
-Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle.
+Yığmanızda [envify](https://github.com/hughsk/envify) transformasiyası istifadə edin.
 
 ``` bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
-Also see [Production Deployment Tips](deployment.html).
+Həmçinin [prodakşna yerləşdirmə məsləhətlərinə](deployment.html) nəzər yetirin.
 
-### CSP environments
+### CSP mühitləri
 
-Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The full build depends on this feature to compile templates, so is unusable in these environments.
+Google Chrome Apps kimi bəzi mühitlər Content Security Policy (CSP) əməl olunmasını tələb edir. CSP ifadələrin yerinə yetirilməsi üçün `new Function()` konstruksiyasının istifadəsini qadağan edir. Tam yığmalar şablonları kompilyasiya etmək üçün bu konstruksiyadan istifadə edir, ona görə də bu mühitlərdə istifadə oluna bilməz.
 
-On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
+Digər tərəfdən tərkibində yalnız rantaym olan yığmalar CSP mühitlərini tam dəstəkləyir. Belə yığmaları [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) və ya [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple) ilə istifadə etdikdə, şablonlarınız `render` funksiyalarına çeviriləcək, hansıları ki CSP mühitlərində problemsiz işləyir.
 
-## Dev Build
+## Development yığmaları
 
-**Important**: the built files in GitHub's `/dist` folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!
+**Vacib qeyd**: GitHub-da `/dist` qovluğundakı fayllar yalnız reliz zamanı yenilənir. Vue-nun Github-dakı ən aktual versiyasını istifadə etmək üçün özünüz yığmalısınız!
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
@@ -269,13 +271,13 @@ npm run build
 
 ## Bower
 
-Only UMD builds are available from Bower.
+Bower vasitəsi ilə yalnız UMD yığmaları əlçatandır.
 
 ``` bash
-# latest stable
+# son stabil versiya
 $ bower install vue
 ```
 
-## AMD Module Loaders
+## AMD modul yükləyiciləri
 
-All UMD builds can be used directly as an AMD module.
+Bütün UMD yığmaları birbaşa AMD modulu kimi istifadə oluna bilər.
