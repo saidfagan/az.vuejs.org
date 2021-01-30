@@ -1,24 +1,24 @@
 ---
-title: The Vue Instance
+title: Vue surəti
 type: guide
 order: 3
 ---
 
-## Creating a Vue Instance
+## Vue surətinin yaradılması
 
-Every Vue application starts by creating a new **Vue instance** with the `Vue` function:
+Hər bir Vue tətbiqi `Vue` funksiyası vasitəsi ilə **Vue surətinin** yaradılmasından başlayır:
 
 ```js
 var vm = new Vue({
-  // options
+  // opsiyalar
 })
 ```
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instance.
+Vue-nun dizaynı ona tamamilə bağlı olmasa da [MVVM şablonundan](https://en.wikipedia.org/wiki/Model_View_ViewModel) ilhamlanıb. Vue surəti üçün `vm` adlı dəyişən (ViewModel-dən qısaldılıb) ənənəvi olaraq istifadə olunur.
 
-When you create a Vue instance, you pass in an **options object**. The majority of this guide describes how you can use these options to create your desired behavior. For reference, you can also browse the full list of options in the [API reference](../api/#Options-Data).
+Vue surəti yaradılanda ona **opsiyalar obyekti** ötürülür. Bu bələdçinin böyük hissəsi həmin opsiyalardan istədiyiniz funksionalı almaq üçün necə istifadə etməyi təsvir edir. Əlavə məlumat üçün bütün opsiyaların siyahısına [API kitabçasında](../api/#Options-Data) baxa bilərsiniz.
 
-A Vue application consists of a **root Vue instance** created with `new Vue`, optionally organized into a tree of nested, reusable components. For example, a todo app's component tree might look like this:
+Vue tətbiqi `new Vue` bəyanatı ilə yaranmış **təməl Vue surətindən** və ağac şəklində iç içə təkrar istifadə oluna bilən komponentlərdən ibarətdir. Məsələn, todo tətbiqin komponentlər ağacı belə qurula bilər:
 
 ```
 Root Instance
@@ -31,42 +31,42 @@ Root Instance
       └─ TodoListStatistics
 ```
 
-We'll talk about [the component system](components.html) in detail later. For now, just know that all Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
+[Komponentlər sistemi](components.html) barədə bir az sonra daha ətraflı danışacayıq. Hələlik isə Vue komponentlərinin Vue surətləri olduğunu və eyni opsiyalar obyekti qəbul etdiyini (bəzi təməl Vue surətinə xas opsiyalardan başqa) bilməyiniz kifayətdir.
 
-## Data and Methods
+## Verilənlər və metodlar
 
-When a Vue instance is created, it adds all the properties found in its `data` object to Vue's **reactivity system**. When the values of those properties change, the view will "react", updating to match the new values.
+Vue surəti yaradılanda, onun `data` obyektində olan bütün xassələri Vue-nun **reaktivlik sisteminə** əlavə olunur. Həmin xassələrin dəyərləri dəyişəndə görünüş yeni dəyərlərə uyğun yenilənəcək, başqa cür desək dəyişikliyə "reaksiya verəcək".
 
 ```js
-// Our data object
+// Bizim data obyektimiz
 var data = { a: 1 }
 
-// The object is added to a Vue instance
+// Bu obyekt Vue surətinə ötürülür 
 var vm = new Vue({
   data: data
 })
 
-// Getting the property on the instance
-// returns the one from the original data
+// Surətdən xassəni alanda
+// ilkin data obyektindəki həmin xassə alınır
 vm.a == data.a // => true
 
-// Setting the property on the instance
-// also affects the original data
+// Surətin xassəsini dəyişəndə
+// ilkin data obyektinin həmin xassəsi də dəyişir
 vm.a = 2
 data.a // => 2
 
-// ... and vice-versa
+// ... əks əməliyyat da eyni nəticə verir
 data.a = 3
 vm.a // => 3
 ```
 
-When this data changes, the view will re-render. It should be noted that properties in `data` are only **reactive** if they existed when the instance was created. That means if you add a new property, like:
+Xassələrin dəyəri dəyişəndə görünüş yenidən render olunacaq. Qeyd etmək lazımdır ki, `data` obyektindəki xassələr yalnız surət yaradıldığı zaman əlavə olunduqda **reaktiv** olurlar. Yəni əgər aşağıdakı şəkildə yeni xassə əlavə etsək:
 
 ```js
 vm.b = 'hi'
 ```
 
-Then changes to `b` will not trigger any view updates. If you know you'll need a property later, but it starts out empty or non-existent, you'll need to set some initial value. For example:
+`b` xassəsinə olan dəyişikliklər görünüşü dəyişməyəcək. Əgər hansısa xassənin daha sonra lazım olacağını bilirsinizsə, lakin onun dəyəri boşdursa, ona ilkin dəyər vermək lazımdır. Məsələn:
 
 ```js
 data: {
@@ -78,7 +78,7 @@ data: {
 }
 ```
 
-The only exception to this being the use of `Object.freeze()`, which prevents existing properties from being changed, which also means the reactivity system can't _track_ changes.
+Bu qaydaya tək istisna `Object.freeze()` metodunun istifadə olunması halıdır. Bu metod mövcud xassələrin dəyişməsinə icazə vermir, nəticədə reaktivlik sistemi dəyişiklikləri _izləyə_ bilmir.
 
 ```js
 var obj = {
@@ -96,12 +96,12 @@ new Vue({
 ```html
 <div id="app">
   <p>{{ foo }}</p>
-  <!-- this will no longer update `foo`! -->
+  <!-- `foo` dəyişəni artıq dəyişməyəcək! -->
   <button v-on:click="foo = 'baz'">Change it</button>
 </div>
 ```
 
-In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are prefixed with `$` to differentiate them from user-defined properties. For example:
+Data obyektindən başqa, Vue surətlərinin bir sıra lazımlı xassələri və metodları var. Onlar istifadəçinin təyin etdiyi xassələrdən seçilməsi üçün `$` işarəsi ilə başlayır. Məsələn:
 
 ```js
 var data = { a: 1 }
@@ -113,13 +113,13 @@ var vm = new Vue({
 vm.$data === data // => true
 vm.$el === document.getElementById('example') // => true
 
-// $watch is an instance method
+// $watch surətin metodudur
 vm.$watch('a', function (newValue, oldValue) {
-  // This callback will be called when `vm.a` changes
+  // Bu kolbək `vm.a` dəyişəndə çağırılacaq
 })
 ```
 
-In the future, you can consult the [API reference](../api/#Instance-Properties) for a full list of instance properties and methods.
+Surətin bütün xassələri və metodlarının siyahısına baxmaq üçün [API kitabçasına](../api/#Instance-Properties) keçə bilərsiniz.
 
 ## Instance Lifecycle Hooks
 
