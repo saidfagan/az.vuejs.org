@@ -121,13 +121,13 @@ vm.$watch('a', function (newValue, oldValue) {
 
 Surətin bütün xassələri və metodlarının siyahısına baxmaq üçün [API kitabçasına](../api/#Instance-Properties) keçə bilərsiniz.
 
-## Instance Lifecycle Hooks
+## Surətin həyat dövrü hukları
 
 <div class="vueschool"><a href="https://vueschool.io/lessons/understanding-the-vuejs-lifecycle-hooks?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Lifecycle Hooks Lesson">Watch a free lesson on Vue School</a></div>
 
-Each Vue instance goes through a series of initialization steps when it's created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it also runs functions called **lifecycle hooks**, giving users the opportunity to add their own code at specific stages.
+Hər bir Vue surıti yaradılarkən bir sıra inisizalizasiya mərhələlərindən keçir. Məsələn, verilənlər üzərində müşahidənin qurulması, çablonların kompilyasiyası, surətin DOM-a qoşulması, və verilənlər dəyişəndə DOM-un yenilənməsi. Bu mərhələlər arasında o, istifadəçilərə istədiyi zaman öz kodunu çağırmağa imkan verən **həyat dövrü hukları** funksiyalarını icra edir.
 
-For example, the [`created`](../api/#created) hook can be used to run code after an instance is created:
+Məsələn [`created`](../api/#created) huku surət yaradılandan sonra kod çağırmaq üçün istifadə oluna bilər:
 
 ```js
 new Vue({
@@ -135,19 +135,19 @@ new Vue({
     a: 1
   },
   created: function () {
-    // `this` points to the vm instance
+    // `this` vm surətinə yönlənir
     console.log('a is: ' + this.a)
   }
 })
 // => "a is: 1"
 ```
 
-There are also other hooks which will be called at different stages of the instance's lifecycle, such as [`mounted`](../api/#mounted), [`updated`](../api/#updated), and [`destroyed`](../api/#destroyed). All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it.
+[`mounted`](../api/#mounted), [`updated`](../api/#updated), və [`destroyed`](../api/#destroyed) kimi surətin həyat dövrünün müxtəlif mərhələlərində çağırılan huklar da var. Bütün həyat dövrü huklarında `this` kontekst veriləni huku çağıran Vue surətinə yönlənir.
 
-<p class="tip">Don't use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) on an options property or callback, such as `created: () => console.log(this.a)` or `vm.$watch('a', newValue => this.myMethod())`. Since an arrow function doesn't have a `this`, `this` will be treated as any other variable and lexically looked up through parent scopes until found, often resulting in errors such as `Uncaught TypeError: Cannot read property of undefined` or `Uncaught TypeError: this.myMethod is not a function`.</p>
+<p class="tip"> Surətin xassələrində və ya kolbəklərdə [ox funksiyalarından](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) aşağıda göstərildiyi kimi istifadə etməyin: `created: () => console.log(this.a)` və ya `vm.$watch('a', newValue => this.myMethod())`. Ox funksiyalarında `this` olmadığından, `this` digər verilənlər kimi rəftar olunacaq və tapılanadək daha yuxarıdakı görünüş dairələrində axtarılacaq. Nəticədə `Uncaught TypeError: Cannot read property of undefined` və ya `Uncaught TypeError: this.myMethod is not a function` kimi xətalara rast gələ bilərsiniz.</p>
 
-## Lifecycle Diagram
+## Həyat dövrü diaqramı
 
-Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.
+Aşağıda surətin həyat dövrləri üçün diaqramı görə bilərsiniz. Hal hazırda hər şeyi anlamağa məcbur deyilsiniz, zamanla öyrəndikcə bu şəkilə istinad edə bilərsiniz.
 
 ![The Vue Instance Lifecycle](/images/lifecycle.png)
