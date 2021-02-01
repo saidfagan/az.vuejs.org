@@ -1,53 +1,53 @@
 ---
-title: Template Syntax
+title: Şablon sintaksisi
 type: guide
 order: 4
 ---
 
-Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying Vue instance's data. All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.
+Vue.js render olunmuş DOM-u Vue surətinin verilənlərinə birləşdirən HTML-ə əsaslanmış şablon sintaksisi istifadə edir. Hər bir Vue.js şablonu brauzerlər və HTML parserlər tərəfindən pars oluna bilən düzgün HTML koddur.
 
-Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal number of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.
+Səhnə arxasında Vue şablonları virtual DOM-un render funksiyalarına kompliyasiya edir. Tətbiqin vəziyyəti dəyişəndə Vue reaktivlik sisteminin köməyi ilə düşünülmüş şəkildə yenidən render olunmalı komponentlərin minimal sayını təyin edə bilir və DOM-da minimal sayda manipulyasiyalar edir.
 
-If you are familiar with Virtual DOM concepts and prefer the raw power of JavaScript, you can also [directly write render functions](render-function.html) instead of templates, with optional JSX support.
+Virtual DOM konseptləri ilə tanışsınızsa və JavaScript-in həddsiz gücünü istifadə etməyə üstünlük verirsinizsə şablon yerinə birbaşa JSX dəstəkləyən [render funksiyaları](render-function.html) yaza bilərsiniz.
 
-## Interpolations
+## İnterpolyasiyalar
 
-### Text
+### Mətn
 
-The most basic form of data binding is text interpolation using the "Mustache" syntax (double curly braces):
+Verilənləri bağlamağın ən sadə yolu "Mustache" (ikiqat fiqurlu mötərizə) sintaksisi istifadə edən tekst interpolyasiyasıdır:
 
 ``` html
-<span>Message: {{ msg }}</span>
+<span>Mesaj: {{ msg }}</span>
 ```
 
-The mustache tag will be replaced with the value of the `msg` property on the corresponding data object. It will also be updated whenever the data object's `msg` property changes.
+Fiqurlu mötərizədəki ifadə uyğun verilənlər obyektinin `msg` xassəsi ilə əvəz olunacaq. Həmçinin obyektin `msg` xassəsi dəyişəndə bi ifadə də dəyişəcək.
 
-You can also perform one-time interpolations that do not update on data change by using the [v-once directive](../api/#v-once), but keep in mind this will also affect any other bindings on the same node:
+[v-once direktivi](../api/#v-once) istifadə edərək xassənin dəyişməsini nəzərə almayan birdəfəlik interpolyasiya əldə edə bilərsiniz. Lakin nəzərə alın ki, bu direktiv həmin elementdəki bütün bağlamalara təsir edəcək:
 
 ``` html
-<span v-once>This will never change: {{ msg }}</span>
+<span v-once>Bu heç vaxt dəyişməyəcək: {{ msg }}</span>
 ```
 
-### Raw HTML
+### Xam HTML
 
-The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the [`v-html` directive](../api/#v-html):
+İkiqat fiqurlu mötərizə verilənləri HTML yox sadə mətn kimi göstərir. HTML göstərmək üçün [`v-html` direktivi](../api/#v-html) istifadə etməlisiniz:
 
 ``` html
-<p>Using mustaches: {{ rawHtml }}</p>
-<p>Using v-html directive: <span v-html="rawHtml"></span></p>
+<p>Mötərizə istifadə edərək: {{ rawHtml }}</p>
+<p>v-html direktivi istifadə edərək: <span v-html="rawHtml"></span></p>
 ```
 
 {% raw %}
 <div id="example1" class="demo">
-  <p>Using mustaches: {{ rawHtml }}</p>
-  <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+  <p>Mötərizə istifadə edərək: {{ rawHtml }}</p>
+  <p>v-html direktivi istifadə edərək: <span v-html="rawHtml"></span></p>
 </div>
 <script>
 new Vue({
   el: '#example1',
   data: function () {
     return {
-      rawHtml: '<span style="color: red">This should be red.</span>'
+      rawHtml: '<span style="color: red">Bu qırmızı olmalıdır.</span>'
     }
   }
 })
