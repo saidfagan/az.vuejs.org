@@ -54,29 +54,29 @@ new Vue({
 </script>
 {% endraw %}
 
-The contents of the `span` will be replaced with the value of the `rawHtml` property, interpreted as plain HTML - data bindings are ignored. Note that you cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition.
+`span` elementinin məzmunu sadə HTML olan `rawHtml` xassəsinin dəyəri ilə əvəz olunacaq - verilənlərin bağlamaları nəzərə alınmayacaq. Nəzərə alın ki, Vue-nun şablon mühərriki sətirlərə əsaslanmadığından iç içə şablonlar yaratmaq üçün `v-html` direktivindən istifadə edə bilməzsiniz. Onun yerinə təkrar istifadə və kompozisiya üçün komponentlərdən istifadə edə bilərsiniz.
 
-<p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS vulnerabilities](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use HTML interpolation on trusted content and **never** on user-provided content.</p>
+<p class="tip">Öz saytınızda ixtiyari HTML-in render olunması [XSS zəyifliyinə](https://en.wikipedia.org/wiki/Cross-site_scripting) səbəb ola biləcəyinə görə təhlükəli ola bilər. HTML interpolyasiyasını yalnız güvənli kod üçün istifadə edin və istifadəçi göndərdiyi məzmun üçün **heç vaxt** tətbiq etməyin.</p>
 
-### Attributes
+### Atributlar
 
-Mustaches cannot be used inside HTML attributes. Instead, use a [`v-bind` directive](../api/#v-bind):
+Fiqurlu mötərizə HTML atributların daxilində istifadə oluna bilməz. Əvəzinə [`v-bind` direktivi](../api/#v-bind) istifadə edin:
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-In the case of boolean attributes, where their mere existence implies `true`, `v-bind` works a little differently. In this example:
+Bul tipli atributlarda (hansılardakı atributun olması artıq `true` bildirir) `v-bind` bir qədər fərqli işləyir. Aşağıdakı nümunədə:
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
 ```
 
-If `isButtonDisabled` has the value of `null`, `undefined`, or `false`, the `disabled` attribute will not even be included in the rendered `<button>` element.
+Əgər `isButtonDisabled` xassəsinin dəyəri `null`, `undefined`, və ya `false`-dursa, `disabled` atributu render olunmuş `<button>` elementinə əlavə olunmayacaq.
 
-### Using JavaScript Expressions
+### JavaScript ifadələrinin istifadə olunması
 
-So far we've only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:
+İndiyə qədər verilənləri yalnız şablonlardakı sadə xassələr ilə bağlayırdıq. Ancaq Vue.js bağlamalarda JavaScript ifadələrini tam dəstəkləyir:
 
 ``` html
 {{ number + 1 }}
@@ -88,17 +88,17 @@ So far we've only been binding to simple property keys in our templates. But Vue
 <div v-bind:id="'list-' + id"></div>
 ```
 
-These expressions will be evaluated as JavaScript in the data scope of the owner Vue instance. One restriction is that each binding can only contain **one single expression**, so the following will **NOT** work:
+Bu ifadələr cari Vue surətinin görünüş dairəsində adi JavaScript kod kimi yerinə yetiriləcək. Yeganə məhdudiyyət ondan ibarətdir ki, hər bir bağlamada yalnız **bir ifadə** ola bilər, yəni aşağıdakılar **işləməyəcək**:
 
 ``` html
-<!-- this is a statement, not an expression: -->
+<!-- Bu bəyanatdır, ifadə yox: -->
 {{ var a = 1 }}
 
-<!-- flow control won't work either, use ternary expressions -->
+<!-- idarəetmə operatorları həmçinin işləməyəcək, ternar ifadə istifadə edin -->
 {{ if (ok) { return message } }}
 ```
 
-<p class="tip">Template expressions are sandboxed and only have access to a [whitelist of globals](https://github.com/vuejs/vue/blob/v2.6.10/src/core/instance/proxy.js#L9) such as `Math` and `Date`. You should not attempt to access user-defined globals in template expressions.</p>
+<p class="tip">Şablon ifadələr "qumluq" rejimində işləyir və onların ancaq `Math` və `Date` kimi [məhdud sayda qlobal verilənləri](https://github.com/vuejs/vue/blob/v2.6.10/src/core/instance/proxy.js#L9) çağırma hüququ var. Şablon ifadələrdən istifadəçi təyin etmiş qlobal verilənləri də çağırmaq məsləhət görülmür.</p>
 
 ## Directives
 
