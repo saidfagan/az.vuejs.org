@@ -100,57 +100,57 @@ Bu ifadələr cari Vue surətinin görünüş dairəsində adi JavaScript kod ki
 
 <p class="tip">Şablon ifadələr "qumluq" rejimində işləyir və onların ancaq `Math` və `Date` kimi [məhdud sayda qlobal verilənləri](https://github.com/vuejs/vue/blob/v2.6.10/src/core/instance/proxy.js#L9) çağırma hüququ var. Şablon ifadələrdən istifadəçi təyin etmiş qlobal verilənləri də çağırmaq məsləhət görülmür.</p>
 
-## Directives
+## Direktivlər
 
-Directives are special attributes with the `v-` prefix. Directive attribute values are expected to be **a single JavaScript expression** (with the exception of `v-for`, which will be discussed later). A directive's job is to reactively apply side effects to the DOM when the value of its expression changes. Let's review the example we saw in the introduction:
+Direktivlər `v-` ilə başlayan xüsusi atributlardır. Direktivlərin dəyəri **tək JavaScript ifadəsi** olur (daha sonra müzakirə edəcəyimiz `v-for` direktivi istisna olmaqla). Direktivin işi dəyəri dəyişdiyi zaman lazımi dəyişiklikləri DOM-a tətbiq etməkdən ibarətdir. Gəlin giriş bölməsində gördüyümüz nümunəyə yenidən nəzər yetirək:
 
 ``` html
-<p v-if="seen">Now you see me</p>
+<p v-if="seen">Görünən element</p>
 ```
 
-Here, the `v-if` directive would remove/insert the `<p>` element based on the truthiness of the value of the expression `seen`.
+Burada `v-if` direktivi `seen` ifadəsinin true və ya false olmasından asılı olaraq `<p>` elementini göstərəcək və ya gizlədəcək.
 
-### Arguments
+### Arqumentlər
 
-Some directives can take an "argument", denoted by a colon after the directive name. For example, the `v-bind` directive is used to reactively update an HTML attribute:
+Bəzi direktivlər adından iki nöqtə işarəsi ilə ayırılmış "arqumentlər" qəbul edir. Məsələn, `v-bind` direktivi HTML atributu reaktiv şəkildə dəyişməyə imkan verir:
 
 ``` html
 <a v-bind:href="url"> ... </a>
 ```
 
-Here `href` is the argument, which tells the `v-bind` directive to bind the element's `href` attribute to the value of the expression `url`.
+Burada `href` `v-bind` direktivinə elementin `href` atributunu `url` ifadəsinə bağlamağını deyən direktiv arqumentidir.
 
-Another example is the `v-on` directive, which listens to DOM events:
+Başqa nümunə kimi `v-on` direktivini göstərmək olar. O, DOM hadisələrini dinləyir:
 
 ``` html
 <a v-on:click="doSomething"> ... </a>
 ```
 
-Here the argument is the event name to listen to. We will talk about event handling in more detail too.
+Burada arqument dinlədiyimiz hadisənin adıdır. Hadisələrin emalı haqqında da daha ətraflı danışacayıq.
 
-### Dynamic Arguments
+### Dinamik arqumentlər
 
-> New in 2.6.0+
+> 2.6.0 və daha yeni versiyalarda
 
-Starting in version 2.6.0, it is also possible to use a JavaScript expression in a directive argument by wrapping it with square brackets:
+2.6.0 versiyadan başlayaraq kvadrat mötərizələrin arasına yazmaqla JavaScript ifadələri direktiv arqumenti kimi ötürmək olar:
 
 ``` html
 <!--
-Note that there are some constraints to the argument expression, as explained
-in the "Dynamic Argument Expression Constraints" section below.
+Nəzərə alın ki, "Dinamik arqument ifadələlərinə aid məhdudiyyətlər" 
+bölməsində qeyd olunduğu kimi ötürülən ifadələr üçün bəzi məhdudiyyətlər var.
 -->
 <a v-bind:[attributeName]="url"> ... </a>
 ```
 
-Here `attributeName` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. For example, if your Vue instance has a data property, `attributeName`, whose value is `"href"`, then this binding will be equivalent to `v-bind:href`.
+Burada `attributeName` JavaScript ifadəsi kimi hesablanacaq, və onun hesablanmış dəyəri arqument üçün yekun dəyər kimi istifadə olunacaq. Məsələn, Vue surətinin adı `attributeName` olan dəyəri `"href"` olan xassəsi varsa onda yuxarıdakı direktiv buna `v-bind:href` bərabər olacaq.
 
-Similarly, you can use dynamic arguments to bind a handler to a dynamic event name:
+Analoji olaraq dinamik arqumentləri hadisə işləyicisini dinamik olaraq hadisə adına bağlamaq üçün istifadə edə bilərsiniz:
 
 ``` html
 <a v-on:[eventName]="doSomething"> ... </a>
 ```
 
-In this example, when `eventName`'s value is `"focus"`, `v-on:[eventName]` will be equivalent to `v-on:focus`.
+Bu nümunədə `eventName` ifadəsinin dəyəri `"focus"` olsa `v-on:[eventName]` direktivi `v-on:focus`-a bərabər olacaq.
 
 #### Dynamic Argument Value Constraints
 
