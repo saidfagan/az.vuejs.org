@@ -152,40 +152,40 @@ Analoji olaraq dinamik arqumentləri hadisə işləyicisini dinamik olaraq hadis
 
 Bu nümunədə `eventName` ifadəsinin dəyəri `"focus"` olsa `v-on:[eventName]` direktivi `v-on:focus`-a bərabər olacaq.
 
-#### Dynamic Argument Value Constraints
+#### Dinamik arqument dəyərlərinə aid məhdudiyyətlər
 
-Dynamic arguments are expected to evaluate to a string, with the exception of `null`. The special value `null` can be used to explicitly remove the binding. Any other non-string value will trigger a warning.
+Dinamik arqumentlərin hesablandıqdan sonra sətir olması gözlənilir (`null`-dan başqa). `null` xüsusi dəyəri bağlamanı açıq şəkildə silinməsi üçün istifadə oluna bilər. Hər hansı sətir olmayan dəyər xəbərdarlığa səbəb olacaq.
 
-#### Dynamic Argument Expression Constraints
+#### Dinamik arqument ifadələlərinə aid məhdudiyyətlər
 
-Dynamic argument expressions have some syntax constraints because certain characters, such as spaces and quotes, are invalid inside HTML attribute names. For example, the following is invalid:
+HTML atribut adlarında boşluq və dırnaq kimi bəzi xüsusi simvolların istifadəsi qadağan olunub. Buna görə dinamik arqument ifadələlərinə aid bəzi məhdudiyyətlər var. Məsələn aşağıdakı ifadə düzgün deyil:
 
 ``` html
-<!-- This will trigger a compiler warning. -->
+<!-- Bu kompilyator xəbərdarlığına səbəb olacaq. -->
 <a v-bind:['foo' + bar]="value"> ... </a>
 ```
 
-The workaround is to either use expressions without spaces or quotes, or replace the complex expression with a computed property.
+Burada həll yolu kimi boşluq və dırnaqsız ifadənin istifadə olunması və ya mürəkkəb ifadənin hesablanan xassə ilə əvəz olunmasını.
 
-When using in-DOM templates (i.e., templates written directly in an HTML file), you should also avoid naming keys with uppercase characters, as browsers will coerce attribute names into lowercase:
+DOM-dakı şablonları istifadə edərkən (yəni bir başa HTML faylda yazılmış şablonları) atribut adlarının bpyük hərflərlə yazmaqdan yayınmaq lazımdır, çünki brauzerlər atribut adlarındakı simvolları kiçik hərflərə dəyişəcək:
 
 ``` html
 <!--
-This will be converted to v-bind:[someattr] in in-DOM templates.
-Unless you have a "someattr" property in your instance, your code won't work.
+DOM-dakı şablonlarda bu bəyanat v-bind:[someattr] ilə əvəz olunacaq.
+Surətinizin kodunda "someattr" xassəsi yoxdursa bu kod işləməyəcək.
 -->
 <a v-bind:[someAttr]="value"> ... </a>
 ```
 
-### Modifiers
+### Dəyişdirici
 
-Modifiers are special postfixes denoted by a dot, which indicate that a directive should be bound in some special way. For example, the `.prevent` modifier tells the `v-on` directive to call `event.preventDefault()` on the triggered event:
+Dəyişdiricilər (modifiers) direktivdən nöqtə ilə ayrılmış, direktivin fərqli üsulla bağlanmalı olduğunu bildirən xüsusi postfikslərdir. Məsələn, `.prevent` dəyişdiricisi `v-on` direktivində istifadə olunduqda hadisənin `event.preventDefault()` çağırmasını təmin edir:
 
 ``` html
 <form v-on:submit.prevent="onSubmit"> ... </form>
 ```
 
-You'll see other examples of modifiers later, [for `v-on`](events.html#Event-Modifiers) and [for `v-model`](forms.html#Modifiers), when we explore those features.
+Dəyişdiricilərə aid başqa nümunələri daha sonra görəcəksiniz, [`v-on`](events.html#Event-Modifiers) və [`v-model`](forms.html#Modifiers) direktivlərini araşdıranda.
 
 ## Shorthands
 
