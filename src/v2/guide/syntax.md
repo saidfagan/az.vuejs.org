@@ -187,34 +187,34 @@ Dəyişdiricilər (modifiers) direktivdən nöqtə ilə ayrılmış, direktivin 
 
 Dəyişdiricilərə aid başqa nümunələri daha sonra görəcəksiniz, [`v-on`](events.html#Event-Modifiers) və [`v-model`](forms.html#Modifiers) direktivlərini araşdıranda.
 
-## Shorthands
+## Qısaltmalar
 
-The `v-` prefix serves as a visual cue for identifying Vue-specific attributes in your templates. This is useful when you are using Vue.js to apply dynamic behavior to some existing markup, but can feel verbose for some frequently used directives. At the same time, the need for the `v-` prefix becomes less important when you are building a [SPA](https://en.wikipedia.org/wiki/Single-page_application), where Vue manages every template. Therefore, Vue provides special shorthands for two of the most often used directives, `v-bind` and `v-on`:
+`v-` prefiksi şablonlarınızdakı Vue atributlarının vizual tanınması üçün xidmət edir. Mövcud koda dinamik davranış əlavə etmək üçün belə atribut adları rahat ola bilər, lakin çox istifadə olunan direktivlərdə onların istifadəsi narahatdır. Eyni zamanda Vue-nun özünün hər bir şablonu idarə etdiyi [birsəhifəli tətbiqlər (SPA)](https://en.wikipedia.org/wiki/Single-page_application) yazdıqda `v-` prefiksinin istifadəsi o qədər də önəmli olmur. Buna görə də Vue ən çox istifadə olunan iki direktiv `v-bind` və `v-on` üçün qısaltma təqdim edir:
 
-### `v-bind` Shorthand
+### `v-bind` üçün qısaltma
 
 ``` html
-<!-- full syntax -->
+<!-- tam sintaksis -->
 <a v-bind:href="url"> ... </a>
 
-<!-- shorthand -->
+<!-- qısaltma -->
 <a :href="url"> ... </a>
 
-<!-- shorthand with dynamic argument (2.6.0+) -->
+<!-- dinamik arqumentli qısaltma (2.6.0+) -->
 <a :[key]="url"> ... </a>
 ```
 
-### `v-on` Shorthand
+### `v-on` üçün qısaltma
 
 ``` html
-<!-- full syntax -->
+<!-- tam sintaksis -->
 <a v-on:click="doSomething"> ... </a>
 
-<!-- shorthand -->
+<!-- qısaltma -->
 <a @click="doSomething"> ... </a>
 
-<!-- shorthand with dynamic argument (2.6.0+) -->
+<!-- dinamik arqumentli qısaltma (2.6.0+) -->
 <a @[event]="doSomething"> ... </a>
 ```
 
-They may look a bit different from normal HTML, but `:` and `@` are valid characters for attribute names and all Vue-supported browsers can parse it correctly. In addition, they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.
+Qısaltmalar normal HTML koddan fərqli görünə bilər, lakin `:` və `@` simvollarının atribut adlarında istifadəsinə icazə var. Nəticədə Vue-nu dəstəkləyən bütün brauzerlər bu qısaltmaları düzgün emal edə bilər. Əlavə olaraq, qısaltmalar yekun render olunmuş səhifədə görünmür. Qısaltma sintaksisin istifadəsi qeyri-məcburidir, lakin onun haqqında daha çox öyrəndikdən sonra yəqin ki onu bəyənəcəksiniz.
