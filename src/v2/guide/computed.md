@@ -1,14 +1,14 @@
 ---
-title: Computed Properties and Watchers
+title: Hesablanan xassə və izləyicilər
 type: guide
 order: 5
 ---
 
-## Computed Properties
+## Hesablanan xassələr
 
-<div class="vueschool"><a href="https://vueschool.io/lessons/vuejs-computed-properties?friend=vuejs" target="_blank" rel="sponsored noopener" title="Learn how computed properties work with Vue School">Learn how computed properties work with a free lesson on Vue School</a></div>
+<div class="vueschool"><a href="https://vueschool.io/lessons/vuejs-computed-properties?friend=vuejs" target="_blank" rel="sponsored noopener" title="Learn how computed properties work with Vue School">Hesablanan xassələrin necə işlədiyini Vue School saytındakı pulsuz dərsdən öyrən</a></div>
 
-In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain. For example:
+Şablonların içindəki ifadələr olduqca rahatdır, lakin onlar sadə əməliyyatlar üçün nəzərdə tutulub. Şablonlara çoxlu məntiqin əlavə olunması onların dəstəklənməsini çətinləşdirir. Misal üçün:
 
 ``` html
 <div id="example">
@@ -16,16 +16,16 @@ In-template expressions are very convenient, but they are meant for simple opera
 </div>
 ```
 
-At this point, the template is no longer simple and declarative. You have to look at it for a second before realizing that it displays `message` in reverse. The problem is made worse when you want to include the reversed message in your template more than once.
+Burada şablon artıq sadə və aydın deyil. İlk baxışdan bu ifadənin `message` sahəsini əks ardıcıllıqda göstərdiyini anlamaq olmur. İfadəni şablonunuzda bir neçə dəfə istifadə etsəniz problem daha da kəskinləşəcək.
 
-That's why for any complex logic, you should use a **computed property**.
+Ona görə də mürəkkəb ifadələr üçün **hesablanan xassələr** istifadə etməlisiniz.
 
-### Basic Example
+### Sadə nümunə
 
 ``` html
 <div id="example">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>İlkin mesaj: "{{ message }}"</p>
+  <p>Hesablanan çevrilmiş mesaj: "{{ reversedMessage }}"</p>
 </div>
 ```
 
@@ -36,21 +36,21 @@ var vm = new Vue({
     message: 'Hello'
   },
   computed: {
-    // a computed getter
+    // hesablanan xassə
     reversedMessage: function () {
-      // `this` points to the vm instance
+      // `this` vm surətinə yönəldir
       return this.message.split('').reverse().join('')
     }
   }
 })
 ```
 
-Result:
+Nəticə:
 
 {% raw %}
 <div id="example" class="demo">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>İlkin mesaj: "{{ message }}"</p>
+  <p>Hesablanan çevrilmiş mesaj: "{{ reversedMessage }}"</p>
 </div>
 <script>
 var vm = new Vue({
@@ -67,7 +67,7 @@ var vm = new Vue({
 </script>
 {% endraw %}
 
-Here we have declared a computed property `reversedMessage`. The function we provided will be used as the getter function for the property `vm.reversedMessage`:
+Burada `reversedMessage` hesablanan xassəsi elan olunub. Ötürülən funksiya `vm.reversedMessage` xassəsi üçün qetter kimi istifadə olunacaq:
 
 ``` js
 console.log(vm.reversedMessage) // => 'olleH'
