@@ -75,16 +75,16 @@ vm.message = 'Goodbye'
 console.log(vm.reversedMessage) // => 'eybdooG'
 ```
 
-You can open the console and play with the example vm yourself. The value of `vm.reversedMessage` is always dependent on the value of `vm.message`.
+Konsolu açıb bu nümunə ilə təcrübə apara bilərsiniz. `vm.reversedMessage` xassəsinin dəyəri həmişə `vm.message` xassəsinin dəyərindən asılıdır.
 
-You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.reversedMessage` depends on `vm.message`, so it will update any bindings that depend on `vm.reversedMessage` when `vm.message` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function has no side effects, which makes it easier to test and understand.
+Hesablanan xassələr adi xassələr kimi verilənlərə bağlana bilər. Vue `vm.reversedMessage` xassəsinin `vm.message`-dan asılı olduğunu bilir, ona görə `vm.message` xassəsi dəyişəndə `vm.reversedMessage` xassəsinə bağlı bütün elementlər də dəyişəcək. Ən vacib məqam burada odur ki, bu asılılığı biz deklarativ şəkildə yaratdıq: hesablanan xassənin qetterinin əks təsiri yoxdur, onu test etmək və anlamaq daha asandır.
 
-### Computed Caching vs Methods
+### Hesablanan xassələrin keşlənməsi və metodlar
 
-You may have noticed we can achieve the same result by invoking a method in the expression:
+Fikir versəniz eyni nəticəni metod vasitəsi ilə də əldə etməyin mümkün olduğunu görərsiniz:
 
 ``` html
-<p>Reversed message: "{{ reverseMessage() }}"</p>
+<p>Çevrilmiş mesaj: "{{ reverseMessage() }}"</p>
 ```
 
 ``` js
@@ -96,9 +96,9 @@ methods: {
 }
 ```
 
-Instead of a computed property, we can define the same function as a method. For the end result, the two approaches are indeed exactly the same. However, the difference is that **computed properties are cached based on their reactive dependencies.** A computed property will only re-evaluate when some of its reactive dependencies have changed. This means as long as `message` has not changed, multiple access to the `reversedMessage` computed property will immediately return the previously computed result without having to run the function again.
+Hesablanan xassə yerinə həmin funksiyanı metod kimi təyin edə bilərik. Nəticə etibarı ilə bu iki yanaşma doğrudan da eynidir. Lakin fərq budur ki, **hesablanan xassələr reaktiv asılılıqlarından asılıolaraq keşlənir.** Hesablanan xassə ancaq onun reaktiv asılılıqları dəyişəndə yenidən hesablanır. Bu o deməkdir ki, `message` xassəsi dəyişməyibsə `reversedMessage` xassəsininin istifadəsi qetter funksiyasını çağırmayaraq sonuncu hesablanan dəyəri qaytaracaq.
 
-This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
+Bu həm də o deməkdir ki, aşağıdakı hesablanan xassə heç vaxt yenilənməyəcək, çünki `Date.now()` reaktiv asılılıq deyil:
 
 ``` js
 computed: {
@@ -108,9 +108,9 @@ computed: {
 }
 ```
 
-In comparison, a method invocation will **always** run the function whenever a re-render happens.
+Müqayisə üçün, metod çağırılması **hər dəfə səhifə render olduqda** funksiyanı icra edəcək.
 
-Why do we need caching? Imagine we have an expensive computed property **A**, which requires looping through a huge Array and doing a lot of computations. Then we may have other computed properties that in turn depend on **A**. Without caching, we would be executing **A**’s getter many more times than necessary! In cases where you do not want caching, use a method instead.
+Keşləmə nə üçün lazımdır? Təsəvvür edin ki massiv üzərindən keçən və çoxlu hesablama aparan "ağır" **A** hesablanan xassəsi var. Əlavə olaraq **A** xassəsindən asılı olan başqa hesablanan xassələr də mövcud ola bilər. Keşləmə olmasaydı **A** xassəsini qetteri lazım olandan xeyli çox çağırılardı! Keşləmədən yararlanmaq istəmirsinizsə metod istifadə edin.
 
 ### Computed vs Watched Property
 
