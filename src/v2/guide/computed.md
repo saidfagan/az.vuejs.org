@@ -1,5 +1,5 @@
 ---
-title: Hesablanan xassə və izləyicilər
+title: Hesablanan və izləyici xassələr
 type: guide
 order: 5
 ---
@@ -108,13 +108,13 @@ computed: {
 }
 ```
 
-Müqayisə üçün, metod çağırılması **hər dəfə səhifə render olduqda** funksiyanı icra edəcək.
+Digər tərəfdən şablonda metodun istifadə olunması **hər dəfə səhifə render olduqda** çağırılacaq.
 
 Keşləmə nə üçün lazımdır? Təsəvvür edin ki massiv üzərindən keçən və çoxlu hesablama aparan "ağır" **A** hesablanan xassəsi var. Əlavə olaraq **A** xassəsindən asılı olan başqa hesablanan xassələr də mövcud ola bilər. Keşləmə olmasaydı **A** xassəsini qetteri lazım olandan xeyli çox çağırılardı! Keşləmədən yararlanmaq istəmirsinizsə metod istifadə edin.
 
-### Computed vs Watched Property
+### Hesablanan və izləyici xassələr
 
-Vue does provide a more generic way to observe and react to data changes on a Vue instance: **watch properties**. When you have some data that needs to change based on some other data, it is tempting to overuse `watch` - especially if you are coming from an AngularJS background. However, it is often a better idea to use a computed property rather than an imperative `watch` callback. Consider this example:
+Vue surətdəki verilənlərin dəyişməsini müşahidə edən və ona reaksiya verən ümumi üsul təqdim edir: **izləyici xassələr**. Bir verilən digər verilənin dəyəri dəyişəndə dəyişməlidirsə `watch` opsiyası istifadə etmək sizə cəlbedici gələ bilər, xüsusilə əvvəllər AngularJS istifadə edibsinizsə. Lakin çox vaxtı izləyici xassə yerinə hesablanan xassə istifadə etmək daha məqsədəuyğundur. Bu nümunəyə nəzər yetirin:
 
 ``` html
 <div id="demo">{{ fullName }}</div>
@@ -139,7 +139,7 @@ var vm = new Vue({
 })
 ```
 
-The above code is imperative and repetitive. Compare it with a computed property version:
+Yuxarıdakı kod imperativdir və təkrarlanır. Hesablanan xassə olan versiya ilə müqayisə edin:
 
 ``` js
 var vm = new Vue({
@@ -156,17 +156,17 @@ var vm = new Vue({
 })
 ```
 
-Much better, isn't it?
+Xeyli yaxşıdır, elə deyil mi?
 
-### Computed Setter
+### Hesablanan setter
 
-Computed properties are by default getter-only, but you can also provide a setter when you need it:
+Hesablanan xassələr defolt olaraq ancaq qetter ilə işləyir, amma lazım gələrsə setter də əlavə edə bilərsiniz:
 
 ``` js
 // ...
 computed: {
   fullName: {
-    // getter
+    // qetter
     get: function () {
       return this.firstName + ' ' + this.lastName
     },
@@ -181,18 +181,18 @@ computed: {
 // ...
 ```
 
-Now when you run `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
+Bu kodu `vm.fullName = 'John Doe'` icra etsəniz, setter çağırılacaq, `vm.firstName` və `vm.lastName` uyğun olaraq dəyişəcək.
 
-## Watchers
+## İzləyicilər
 
-While computed properties are more appropriate in most cases, there are times when a custom watcher is necessary. That's why Vue provides a more generic way to react to data changes through the `watch` option. This is most useful when you want to perform asynchronous or expensive operations in response to changing data.
+Hesablanan xassələr əksər hallarda daha uyğun olsalar da, izləyicilərin əvəzolunmaz olduğu hallar var. Buna görə Vue verilənlər dəyişməsinə reaksiya verməyin ümumi üsulunu `watch` opsiyası vasitəsi ilə təqdim edir. O, verilənlərin dəyişməsi nəticəsində icra edilən asinxron və ya ağır əməliyyatların yerinə yetirilməsi üçün faydalıdır.
 
-For example:
+Məsələn:
 
 ``` html
 <div id="watch-example">
   <p>
-    Ask a yes/no question:
+    "Hə" və ya "yox" ilə cavablandırıla bilən sual soruşun:
     <input v-model="question">
   </p>
   <p>{{ answer }}</p>
@@ -200,10 +200,10 @@ For example:
 ```
 
 ``` html
-<!-- Since there is already a rich ecosystem of ajax libraries    -->
-<!-- and collections of general-purpose utility methods, Vue core -->
-<!-- is able to remain small by not reinventing them. This also   -->
-<!-- gives you the freedom to use what you're familiar with.      -->
+<!-- Ajax və ümumi məqsədli metodlar olan çoxlu kitabxana    -->
+<!-- mövcud olduğundan Vue-nun nüvəsi belə kiçik qala bilir. -->
+<!-- Bu həm də sizə tanış olduğunuz kitabxananı              -->
+<!-- seçmək azadlığı verir                                   -->
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 <script>
@@ -211,39 +211,39 @@ var watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
     question: '',
-    answer: 'I cannot give you an answer until you ask a question!'
+    answer: 'Sual verənədək sizə cavab verə bilmərəm!'
   },
   watch: {
-    // whenever question changes, this function will run
+    // question xassəsi dəyişəndə bu funksiya çağırılacaq
     question: function (newQuestion, oldQuestion) {
-      this.answer = 'Waiting for you to stop typing...'
+      this.answer = 'Yazıb qurtarmanızı gözləyirəm...'
       this.debouncedGetAnswer()
     }
   },
   created: function () {
-    // _.debounce is a function provided by lodash to limit how
-    // often a particularly expensive operation can be run.
-    // In this case, we want to limit how often we access
-    // yesno.wtf/api, waiting until the user has completely
-    // finished typing before making the ajax request. To learn
-    // more about the _.debounce function (and its cousin
-    // _.throttle), visit: https://lodash.com/docs#debounce
+    // _.debounce lodash tərəfindən təqdim olunan ağır əməliyyatın 
+    // çağırılma sayına məhdudiyyət qoyan funksiyadı.
+    // Bu nümunədə istifadəçinin ajax sorğudan əvvəl sualı yazıb 
+    // bitirməsini gozləyərkən yesno.wtf/api-nin çağırılma sayına 
+    // məhdudiyyət qoymaq üçün istifadə edirik.
+    // _.debounce funksiyası (və ona bənzər _.throttle) haqqında
+    // əlavə məlumat almaq üçün bu linkə keçin: https://lodash.com/docs#debounce
     this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
   },
   methods: {
     getAnswer: function () {
       if (this.question.indexOf('?') === -1) {
-        this.answer = 'Questions usually contain a question mark. ;-)'
+        this.answer = 'Suallar adətən sual işarəsi ilə bitir. ;-)'
         return
       }
-      this.answer = 'Thinking...'
+      this.answer = 'Fikirləşirəm...'
       var vm = this
       axios.get('https://yesno.wtf/api')
         .then(function (response) {
           vm.answer = _.capitalize(response.data.answer)
         })
         .catch(function (error) {
-          vm.answer = 'Error! Could not reach the API. ' + error
+          vm.answer = 'Xəta! API əlçatan deyil. ' + error
         })
     }
   }
@@ -251,12 +251,12 @@ var watchExampleVM = new Vue({
 </script>
 ```
 
-Result:
+Nəticə:
 
 {% raw %}
 <div id="watch-example" class="demo">
   <p>
-    Ask a yes/no question:
+    "Hə" və ya "yox" ilə cavablandırıla bilən sual soruşun:
     <input v-model="question">
   </p>
   <p>{{ answer }}</p>
@@ -268,11 +268,11 @@ var watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
     question: '',
-    answer: 'I cannot give you an answer until you ask a question!'
+    answer: 'Sual verənədək sizə cavab verə bilmərəm!'
   },
   watch: {
     question: function (newQuestion, oldQuestion) {
-      this.answer = 'Waiting for you to stop typing...'
+      this.answer = 'Yazıb qurtarmanızı gözləyirəm...'
       this.debouncedGetAnswer()
     }
   },
@@ -282,17 +282,17 @@ var watchExampleVM = new Vue({
   methods: {
     getAnswer: function () {
       if (this.question.indexOf('?') === -1) {
-        this.answer = 'Questions usually contain a question mark. ;-)'
+        this.answer = 'Suallar adətən sual işarəsi ilə bitir. ;-)'
         return
       }
-      this.answer = 'Thinking...'
+      this.answer = 'Fikirləşirəm...'
       var vm = this
       axios.get('https://yesno.wtf/api')
         .then(function (response) {
           vm.answer = _.capitalize(response.data.answer)
         })
         .catch(function (error) {
-          vm.answer = 'Error! Could not reach the API. ' + error
+          vm.answer = 'Xəta! API əlçatan deyil. ' + error
         })
     }
   }
@@ -300,6 +300,6 @@ var watchExampleVM = new Vue({
 </script>
 {% endraw %}
 
-In this case, using the `watch` option allows us to perform an asynchronous operation (accessing an API), limit how often we perform that operation, and set intermediary states until we get a final answer. None of that would be possible with a computed property.
+Bu halda `watch` opsiyasının istifadə edilməsi asinxron əməliyyatın yerinə yetirilməsinə (API çağırılması), əməliyyat sayına məhdudiyyət qoyulmasına, və son cavab alınanadək aralıq vəziyyətin qoyulmasına imkan verir. Hesablanan xassə istifadə olunsa idi bunların heç birini etmək mümkün olmazdı.
 
-In addition to the `watch` option, you can also use the imperative [vm.$watch API](../api/#vm-watch).
+`watch` opsiyasına əlavə olaraq, imperativ [vm.$watch API](../api/#vm-watch) istifadə edə bilərsiniz.
