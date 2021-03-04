@@ -1,25 +1,25 @@
 ---
-title: Class and Style Bindings
+title: Sinif və stil bağlamaları
 type: guide
 order: 6
 ---
 
-A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them: we only need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue provides special enhancements when `v-bind` is used with `class` and `style`. In addition to strings, the expressions can also evaluate to objects or arrays.
+Verilənlərə bağlamanın istifadə yollarından biri də elementin siniflərinin və ya inlayn stillərin dəyişilməsidir. Hər ikisi atribut olduğundan bunu etmək üçün `v-bind` istifadə edə bilərik: yekun sətiri direktivdəki ifadə vasitəsi ilə hesablamaq kifayətdir.  Lakin sətir konkatenasiyası ilə işləmək bezdirici və xətaya meyillidir. Bu səbəbdən `v-bind` direktivi `class` və `style` atributları ilə istifadə olunduqda, Vue xüsusi imkanlar təqdim edir. Sətirdən başqa direktivdəki ifadə massiv və ya obyektdə ola bilər.
 
-## Binding HTML Classes
-<div class="vueschool"><a href="https://vueschool.io/lessons/vuejs-dynamic-classes?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Dynamic Classes Lesson">Watch a free video lesson on Vue School</a></div>
+## HTML siniflərin bağlanması
+<div class="vueschool"><a href="https://vueschool.io/lessons/vuejs-dynamic-classes?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Dynamic Classes Lesson">Vue School saytındakı pulsuz dərsə bax</a></div>
 
-### Object Syntax
+### Obyektlərin istifadə olunması
 
-We can pass an object to `v-bind:class` to dynamically toggle classes:
+Sinifləri dinamik şəkildə dəyişmək üçün `v-bind:class` atributuna obyekt ötürə bilərik:
 
 ``` html
 <div v-bind:class="{ active: isActive }"></div>
 ```
 
-The above syntax means the presence of the `active` class will be determined by the [truthiness](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) of the data property `isActive`.
+Yuxarıdakı ifadə `active` sinfinin olub olmamasının `isActive` xassəsinin [həqiqiliyi (truthiness)](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) ilə müəyyən edildiyini bildirir.
 
-You can have multiple classes toggled by having more fields in the object. In addition, the `v-bind:class` directive can also co-exist with the plain `class` attribute. So given the following template:
+Ötürülən obyektə bir neçə sahə əlavə edərək bir neçə sinifin dəyişməsinə nail ola bilərsiniz. Əlavə olara `v-bind:class`direktivi sadə `class` atributu ilə birgə istifadə oluna bilər. Aşağıdakı şablon:
 
 ``` html
 <div
@@ -28,7 +28,7 @@ You can have multiple classes toggled by having more fields in the object. In ad
 ></div>
 ```
 
-And the following data:
+və bu verilənlər üçün:
 
 ``` js
 data: {
@@ -37,15 +37,15 @@ data: {
 }
 ```
 
-It will render:
+Renderin nəticəsi belə olacaq:
 
 ``` html
 <div class="static active"></div>
 ```
 
-When `isActive` or `hasError` changes, the class list will be updated accordingly. For example, if `hasError` becomes `true`, the class list will become `"static active text-danger"`.
+`isActive` və ya `hasError` dəyişsə, siniflərin siyahısı uyğun olaraq dəyişəcək. Məsələn, `hasError` sahəsi `true` olsa, siniflərin siyahısı belə olacaq `"static active text-danger"`.
 
-The bound object doesn't have to be inline:
+Bağlanan obyekt inlayn olmağa məvbur deyil:
 
 ``` html
 <div v-bind:class="classObject"></div>
@@ -59,7 +59,7 @@ data: {
 }
 ```
 
-This will render the same result. We can also bind to a [computed property](computed.html) that returns an object. This is a common and powerful pattern:
+Renderin nəticəsi eyni olacaq. Həmçinin obyekt qaytaran [hesablanan xassəyə](computed.html) bağlamaq mümkündür. Bu tez-tez istifadə olunan örnəkdir:
 
 ``` html
 <div v-bind:class="classObject"></div>
@@ -79,9 +79,9 @@ computed: {
 }
 ```
 
-### Array Syntax
+### Massivlərin istifadə olunması
 
-We can pass an array to `v-bind:class` to apply a list of classes:
+`v-bind:class` atributuna siniflərin siyahısını massiv şəklində də ötürmək olar:
 
 ``` html
 <div v-bind:class="[activeClass, errorClass]"></div>
@@ -93,21 +93,21 @@ data: {
 }
 ```
 
-Which will render:
+Renderin nəticəsi belə olacaq:
 
 ``` html
 <div class="active text-danger"></div>
 ```
 
-If you would like to also toggle a class in the list conditionally, you can do it with a ternary expression:
+Şərtdən asılı olaraq sinifin istifadə olunub olunmamasını ternar operatorla tənzimləyə bilərsiniz:
 
 ``` html
 <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
-This will always apply `errorClass`, but will only apply `activeClass` when `isActive` is truthy.
+Bu ifadə `errorClass` sinfini həmişə, `activeClass` sinfini isə yalnız `isActive` həqiqi olduqda əlavə edəcək.
 
-However, this can be a bit verbose if you have multiple conditional classes. That's why it's also possible to use the object syntax inside array syntax:
+Lakin bir neçə belə ifadə istifadə edilməsi uzun ola bilər. Ona görə də massivlərdə obyekt istifadə edilməsi mümkündür:
 
 ``` html
 <div v-bind:class="[{ active: isActive }, errorClass]"></div>
@@ -115,7 +115,7 @@ However, this can be a bit verbose if you have multiple conditional classes. Tha
 
 ### With Components
 
-> This section assumes knowledge of [Vue Components](components.html). Feel free to skip it and come back later.
+> Bu bölmə [Vue komponentləri](components.html) bilməyinizi tələb edir. İndi buraxıb sonradan bu bölməyə qayıda bilərsiniz.
 
 When you use the `class` attribute on a custom component, those classes will be added to the component's root element. Existing classes on this element will not be overwritten.
 
